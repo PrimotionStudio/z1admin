@@ -31,7 +31,7 @@ const UserSchema = new mongoose.Schema({
     default: "User",
   },
   profilePicture: String,
-});
+}, {timestamps:true});
 
 UserSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();

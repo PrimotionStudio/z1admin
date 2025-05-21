@@ -18,6 +18,7 @@ export async function POST(request: NextRequest) {
     const foundActivatedUser = await User.findOne({
       email: { $regex: `^${user.email}$`, $options: "i" },
       verified: true,
+      role: "Admin",
     });
     if (!foundActivatedUser) throw new Error("Cannot find account");
 
@@ -34,6 +35,7 @@ export async function POST(request: NextRequest) {
       phone: foundActivatedUser.phone,
       createdAt: foundActivatedUser.createdAt,
       updatedAt: foundActivatedUser.updatedAt,
+      role: foundActivatedUser.role,
     };
 
     const token = jwt.sign(userData, process.env.AUTH_SECRET!, {

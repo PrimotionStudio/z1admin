@@ -15,7 +15,7 @@ export async function GET(req: NextRequest) {
     };
     if (!decoded._id) throw new Error("Unauthorized");
 
-    const user = await User.findById(decoded._id);
+    const user = await User.findOne({ _id: decoded._id, role: "Admin" });
     if (!user) throw new Error("Unauthorized");
 
     return NextResponse.json({

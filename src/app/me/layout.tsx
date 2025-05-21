@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useUserStore } from "@/lib/userStore";
 import { usePathname, useRouter } from "next/navigation";
 import {
@@ -8,33 +8,17 @@ import {
   SidebarContent,
   SidebarHeader,
   SidebarTrigger,
-  useSidebar,
 } from "@/components/ui/sidebar";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import {
-  Users,
   Settings,
   LogOut,
-  BarChart,
   User,
-  Book,
-  School,
-  Library,
   MessageSquareCode,
-  MessageCircle,
-  BookOpenCheck,
-  Table2,
-  Bell,
-  Mail,
-  LayoutPanelLeft,
-  Loader2,
-  Terminal,
-  UsersRound,
-  MessagesSquare,
-  Calendar,
   BookOpen,
+  Users,
 } from "lucide-react";
 import {
   DropdownMenu,
@@ -44,16 +28,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { toast } from "sonner";
 import { Rock_Salt } from "next/font/google";
 
 const rockSalt = Rock_Salt({
@@ -114,6 +88,16 @@ export default function AdminLayout({
                 <Link href="/me/applications">
                   <BookOpen className="mr-2 h-4 w-4" />
                   Applications
+                </Link>
+              </Button>
+              <Button
+                variant="ghost"
+                className={`w-full justify-start ${activeRoute.startsWith("applications") && "bg-muted"}`}
+                asChild
+              >
+                <Link href="/me/users">
+                  <Users className="mr-2 h-4 w-4" />
+                  Users
                 </Link>
               </Button>
               <Button
@@ -204,7 +188,7 @@ export default function AdminLayout({
               </div>
             </div>
           </div>
-          <div className="p-6">{children}</div>
+          <div className="lg:p-6 w-screen lg:w-full">{children}</div>
         </main>
       </div>
     </SidebarProvider>

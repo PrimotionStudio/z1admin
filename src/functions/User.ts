@@ -1,4 +1,4 @@
-import { LoginUser, RegisterUser } from "@/types/User";
+import { LoggedInUser, LoginUser, RegisterUser } from "@/types/User";
 
 export function validateRegisterUserForm(user: RegisterUser) {
   if (user.fullName.trim().length < 2)
@@ -70,5 +70,35 @@ export async function loginUser(user: LoginUser) {
   const data = await response.json();
   if (!response.ok) throw new Error(data.message);
 
+  return data.message;
+}
+
+export async function getAllUsers() {
+  const response = await fetch("/api/user");
+  const data = await response.json();
+  if (!response.ok) throw new Error(data.message);
+  return data.users;
+}
+
+export async function getAllStudents() {
+  const response = await fetch("/api/user/student");
+  const data = await response.json();
+  if (!response.ok) throw new Error(data.message);
+  return data.users;
+}
+
+export async function changeUserRole(
+  userId: string,
+  role: LoggedInUser["role"],
+) {
+  const response = await fetch("/api/user/role", {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ userId, role }),
+  });
+  const data = await response.json();
+  if (!response.ok) throw new Error(data.message);
   return data.message;
 }

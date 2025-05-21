@@ -18,6 +18,7 @@ export interface LoggedInUser {
   phone: string;
   createdAt: string;
   updatedAt: string;
+  role: "Admin" | "Exam Officer" | "Lecturer" | "Student" | "User";
 }
 
 export interface UserLoggedInState {
@@ -26,4 +27,9 @@ export interface UserLoggedInState {
   clearUser: () => void;
   loadUserFromCookie: () => Promise<void>;
   logout: () => Promise<void>;
+}
+
+export interface UserRoleChange {
+  userId: string;
+  role: LoggedInUser["role"];
 }
