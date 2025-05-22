@@ -33,7 +33,7 @@ interface FeeData {
   schoolFees: SchoolFee[];
 }
 
-export function FeeManagement() {
+export default function FeeManagement() {
   const [feeData, setFeeData] = useState<FeeData>({
     applicationFee: 0,
     schoolFees: [{ name: "", amount: 0 }],
