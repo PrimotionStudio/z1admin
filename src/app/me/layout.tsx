@@ -19,6 +19,8 @@ import {
   MessageSquareCode,
   BookOpen,
   Users,
+  School,
+  Building2,
 } from "lucide-react";
 import {
   DropdownMenu,
@@ -92,7 +94,7 @@ export default function AdminLayout({
               </Button>
               <Button
                 variant="ghost"
-                className={`w-full justify-start ${activeRoute.startsWith("applications") && "bg-muted"}`}
+                className={`w-full justify-start ${activeRoute.startsWith("users") && "bg-muted"}`}
                 asChild
               >
                 <Link href="/me/users">
@@ -100,6 +102,16 @@ export default function AdminLayout({
                   Users
                 </Link>
               </Button>
+              {/* <Button
+                variant="ghost"
+                className={`w-full justify-start ${activeRoute.startsWith("faculties") && "bg-muted"}`}
+                asChild
+              >
+                <Link href="/me/faculties">
+                  <Building2 className="mr-2 h-4 w-4" />
+                  Faculties
+                </Link>
+              </Button> */}
               <Button
                 variant="ghost"
                 className={`w-full justify-start ${activeRoute.startsWith("payments") && "bg-muted"}`}
